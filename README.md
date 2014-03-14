@@ -284,9 +284,9 @@ vector.
   (set-html! application "<h1>LOL! YOU LOST!</h1>"))
 
 ;; Quick and dirty history configuration.
-(let [h (History.)]
-  (goog.events/listen h EventType/NAVIGATE #(secretary/dispatch! (.-token %)))
-  (doto h (.setEnabled true)))
+(doto (History.)
+  (goog.events/listen EventType/NAVIGATE #(secretary/dispatch! (.-token %)))
+  (.setEnabled true))
 
 (secretary/dispatch! "/")
 ```
